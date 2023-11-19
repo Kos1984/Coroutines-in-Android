@@ -91,4 +91,8 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
             }
         }
     }
+
+    override suspend fun localLikeById(id: Long, likedByMe: Boolean) {
+       dao.likeById(id)
+    }
 }

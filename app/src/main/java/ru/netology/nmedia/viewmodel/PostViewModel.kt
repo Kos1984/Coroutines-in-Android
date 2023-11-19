@@ -89,12 +89,12 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun likeById(id: Long, likedByMe: Boolean) {
-
         viewModelScope.launch {
             try {
                 repository.likeById(id, likedByMe)
                 _dataState.value = FeedModelState()
             } catch (e: Exception) {
+                repository.localLikeById(id, likedByMe)
                 _dataState.value = FeedModelState(error = true)
             }
         }
